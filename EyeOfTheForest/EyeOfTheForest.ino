@@ -38,6 +38,7 @@ void setup() {
 }
 
 void loop() {
+  lcd.clear();
   lcd.setCursor(0,1);
   lcd.print("Humidity (%): ");
   lcd.print((float)DHT11.humidity, 2);
