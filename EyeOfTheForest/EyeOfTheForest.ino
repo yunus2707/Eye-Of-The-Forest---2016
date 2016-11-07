@@ -23,12 +23,14 @@ R/W : GND
 
 #include <LiquidCrystal.h>
 #include <dht11.h>
+#include <stdio.h>
 
 #define DHT11PIN 2
 
 LiquidCrystal lcd(8,9,4,5,6,7);
 
 dht11 DHT11;
+char lcdp[16];
 
 void setup() {
   Serial.begin(9600);
@@ -39,13 +41,15 @@ void setup() {
 
 void loop() {
   lcd.clear();
-  lcd.setCursor(0,1);
+  lcd.setCursor(0,0);
   lcd.print("Humidity (%): ");
-  lcd.print((float)DHT11.humidity, 2);
+  sprintf(lcdp,"%d",DHT11.humidity);
+  lcd.print(lcdp);
 
-  lcd.setCursor(0,2);
+  lcd.setCursor(0,1);
   lcd.print("Temperature (°C): ");
-  lcd.print((float)DHT11.temperature, 2);
+  sprintf(lcdp,"%d",DHT11.temperature);
+  lcd.print(lcdp);
 
   delay(1000);
 }
